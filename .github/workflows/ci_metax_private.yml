@@ -40,12 +40,13 @@ jobs:
           export CUDA_PATH=${HOME}/cu-bridge/CUDA_DIR
           export LD_LIBRARY_PATH=${CUDA_PATH}/lib64:${MACA_PATH}/lib:${MACA_PATH}/mxgpu_llvm/lib:$LD_LIBRARY_PATH
 
-          PACKAGES_LINK=${PWD}/python-site-packages
-          echo ${PACKAGES_LINK}
-          sudo ln -s /opt/conda/lib/python3.10/site-packages ${PACKAGES_LINK}
+          # PACKAGES_LINK=${PWD}/python-site-packages
+          # echo ${PACKAGES_LINK}
+          # ln -s /opt/conda/lib/python3.10/site-packages ${PACKAGES_LINK}
+          PACKAGES_LINK=/opt/conda/lib/python3.10/site-packages
           pip list | grep paddle
           python --version
-          ls ${PACKAGES_LINK} | grep paddle
+          # ls ${PACKAGES_LINK} | grep paddle
 
           REPLACE_FILES_PATH=/data/maca3.0-release-2.3
 
