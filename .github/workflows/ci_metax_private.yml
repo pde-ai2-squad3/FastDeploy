@@ -49,7 +49,7 @@ jobs:
           # ls ${PACKAGES_LINK} | grep paddle
 
           REPLACE_FILES_PATH=/data/maca3.0-release-2.3
-
+          sleep 3000
           sudo cp ${REPLACE_FILES_PATH}/all_reduce.py ${PACKAGES_LINK}/paddle/distributed/communication/
           sudo cp ${REPLACE_FILES_PATH}/all_gather.py ${PACKAGES_LINK}/paddle/distributed/communication/
           sudo cp ${REPLACE_FILES_PATH}/broadcast.py ${PACKAGES_LINK}/paddle/distributed/communication/
