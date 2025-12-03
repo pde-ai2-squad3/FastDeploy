@@ -53,9 +53,9 @@ jobs:
 
           cp ${REPLACE_FILES_PATH}/all_things.py ${PACKAGES_LINK}/use_triton_in_paddle/cuda/
 
-          cp ${REPLACE_FILES_PATH}/mctlass/mctlassEx.h /opt/maca/include/mctlassEx/
-          cp ${REPLACE_FILES_PATH}/mctlass/libmctlassEx.so /opt/maca/lib/
-          cp ${REPLACE_FILES_PATH}/mctlass/mctlassEx_xcore1000.mcfb /opt/maca/lib/
+          sudo cp ${REPLACE_FILES_PATH}/mctlass/mctlassEx.h /opt/maca/include/mctlassEx/
+          sudo cp ${REPLACE_FILES_PATH}/mctlass/libmctlassEx.so /opt/maca/lib/
+          sudo cp ${REPLACE_FILES_PATH}/mctlass/mctlassEx_xcore1000.mcfb /opt/maca/lib/
 
           cd FastDeploy
           # git reset --hard 68533ebd952185526053535ab5339285dcd1ab3e
