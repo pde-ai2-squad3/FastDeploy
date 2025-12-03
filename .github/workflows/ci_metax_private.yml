@@ -44,6 +44,8 @@ jobs:
           echo ${PACKAGES_LINK}
           sudo ln -s /opt/conda/lib/python3.10/site-packages ${PACKAGES_LINK}
           pip list | grep paddle
+          python --version
+          ls ${PACKAGES_LINK} | grep paddle
 
           REPLACE_FILES_PATH=/data/maca3.0-release-2.3
 
