@@ -75,4 +75,5 @@ jobs:
 
       - name: run test
         run: |
+          sleep 6000
           python tests/ci_use/Metax_UT/run_ernie_vl_28B.py
