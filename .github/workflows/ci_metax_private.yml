@@ -62,8 +62,10 @@ jobs:
           # git reset --hard 68533ebd952185526053535ab5339285dcd1ab3e
           git revert --no-edit 2e1680838f5e99e4ea5c5bc4251365d9add0f62f
 
-          echo "current user ${whoami}"
-          ls /data/models
+          echo "***********************"
+          whoami
+          echo "***********************"
+          sudo ls /data/models
           
           bash build.sh
 
