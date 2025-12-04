@@ -21,8 +21,6 @@ jobs:
         run: |
           export DATE_NUMBER=$(date +%Y%m%d)
           export PREV_DATE_NUMBER=$(date -d "yesterday" +%Y%m%d)
-          echo $DATE_NUMBER
-          echo $PREV_DATE_NUMBER
 
           METAX_PADDLE_CUSTOM_DEVICE_WHL_SOURCE=oss://opensource-ci/paddle
           METAX_PADDLE_CUSTOM_DEVICE_WHL_NAME=paddle_metax_gpu-3.3.0.dev${DATE_NUMBER}+maca0.0.0-cp310-cp310-linux_x86_64.whl
