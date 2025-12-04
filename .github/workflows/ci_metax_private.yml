@@ -19,6 +19,12 @@ jobs:
     steps:
       - name: Checkout repository
         run: |
+          export DATE_NUMBER=$(date +%Y%m%d)
+          echo $DATE_NUMBER
+          
+          ossutil ls oss://opensource-ci/paddle/
+          ossutil cat oss://opensource-ci/paddle/
+          
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
