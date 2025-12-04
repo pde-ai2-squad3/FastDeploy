@@ -35,7 +35,7 @@ jobs:
           git clone https://github.com/PaddlePaddle/FastDeploy.git
 
           python -m pip install ${PADDLE_PADDLE_WHL_SOURCE}/${PADDLE_PADDLE_WHL_NAME}
-          python -m pip install ${METAX_PADDLE_CUSTOM_DEVICE_WHL_SOURCE}/${METAX_PADDLE_CUSTOM_DEVICE_WHL_NAME}
+          python -m pip install ${METAX_PADDLE_CUSTOM_DEVICE_WHL_NAME}
           
           python -m pip install /data/maca3.0-release-2.3/use_triton_in_paddle-0.0.0-py3-none-any.whl
 
