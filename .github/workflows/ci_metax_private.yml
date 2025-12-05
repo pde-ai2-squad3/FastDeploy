@@ -70,8 +70,8 @@ jobs:
           sudo cp ${REPLACE_FILES_PATH}/mctlass/mctlassEx.h /opt/maca/include/mctlassEx/
           sudo cp ${REPLACE_FILES_PATH}/mctlass/libmctlassEx.so /opt/maca/lib/
           sudo cp ${REPLACE_FILES_PATH}/mctlass/mctlassEx_xcore1000.mcfb /opt/maca/lib/
-
-          sleep 3000
+          sudo chmod 777 -R /opt/maca/
+          sudo chmod 777 -R ./
 
           bash build.sh
 
