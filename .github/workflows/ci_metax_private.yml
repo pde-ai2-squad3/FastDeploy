@@ -71,6 +71,8 @@ jobs:
           sudo cp ${REPLACE_FILES_PATH}/mctlass/libmctlassEx.so /opt/maca/lib/
           sudo cp ${REPLACE_FILES_PATH}/mctlass/mctlassEx_xcore1000.mcfb /opt/maca/lib/
 
+          sleep 3000
+
           bash build.sh
 
           python -m pip install /data/maca3.0-release-2.3/triton-3.0.0+metax3.0.0.3-cp310-cp310-linux_x86_64.whl
