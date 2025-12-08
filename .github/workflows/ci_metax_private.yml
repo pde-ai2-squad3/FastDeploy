@@ -70,7 +70,8 @@ jobs:
 
           cp ${REPLACE_FILES_PATH}/all_things.py ${PACKAGES_LINK}/use_triton_in_paddle/cuda/
 
-          sudo ls ${REPLACE_FILES_PATH}/mctlass
+          # sudo ls ${REPLACE_FILES_PATH}/mctlass
+          sudo chmod 777 -R ${REPLACE_FILES_PATH}/mctlass
           sudo cp ${REPLACE_FILES_PATH}/mctlass/mctlassEx.h /opt/maca/include/mctlassEx/
           sudo cp ${REPLACE_FILES_PATH}/mctlass/libmctlassEx.so /opt/maca/lib/
           sudo cp ${REPLACE_FILES_PATH}/mctlass/mctlassEx_xcore1000.mcfb /opt/maca/lib/
@@ -81,5 +82,6 @@ jobs:
 
       - name: run test
         run: |
-          timeout -s 9 600s python tests/ci_use/Metax_UT/run_ernie_vl_28B.py
+          # timeout -s 9 600s python tests/ci_use/Metax_UT/run_ernie_vl_28B.py
+          timeout --preserve-status 600s python tests/ci_use/Metax_UT/run_ernie_vl_28B.py
           cat log/workerlog.0
