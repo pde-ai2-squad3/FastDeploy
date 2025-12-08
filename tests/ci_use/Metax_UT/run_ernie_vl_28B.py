@@ -4,7 +4,8 @@ os.environ["FD_MOE_BACKEND"] = "cutlass"
 os.environ["PADDLE_XCCL_BACKEND"] = "metax_gpu"
 os.environ["FLAGS_weight_only_linear_arch"] = "80"
 os.environ["FD_METAX_KVCACHE_MEM"] = "8"
-os.environ["FD_ENC_DEC_BLOCK_NUM"] = "0"
+os.environ["ENABLE_V1_KVCACHE_SCHEDULER"]="1"
+os.environ["FD_ENC_DEC_BLOCK_NUM"]="2"
 
 
 import fastdeploy
