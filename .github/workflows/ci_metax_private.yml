@@ -26,16 +26,11 @@ jobs:
           git config --global user.email "actions@github.com"
 
           git clone https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git .
-          git reset --hard 21f138f68be16c815f60496c1bc5ea69b511f8cc
           git revert --no-edit 2e1680838f5e99e4ea5c5bc4251365d9add0f62f
           if [ "${{ github.event_name }}" == "pull_request" ]; then
             git fetch origin pull/${{ github.event.pull_request.number }}/head:pull/${{ github.event.pull_request.number }}/head
             git rebase pull/${{ github.event.pull_request.number }}/head
           fi
-
-          echo "***********************"
-          git log -n 20 --oneline
-          echo "***********************"
 
           METAX_PADDLE_CUSTOM_DEVICE_WHL_SOURCE=oss://opensource-ci/paddle
           # METAX_PADDLE_CUSTOM_DEVICE_WHL_NAME=paddle_metax_gpu-3.3.0.dev${DATE_NUMBER}+maca0.0.0-cp310-cp310-linux_x86_64.whl
@@ -70,7 +65,6 @@ jobs:
 
           cp ${REPLACE_FILES_PATH}/all_things.py ${PACKAGES_LINK}/use_triton_in_paddle/cuda/
 
-          # sudo ls ${REPLACE_FILES_PATH}/mctlass
           sudo chmod 777 -R ${REPLACE_FILES_PATH}/mctlass
           sudo cp ${REPLACE_FILES_PATH}/mctlass/mctlassEx.h /opt/maca/include/mctlassEx/
           sudo cp ${REPLACE_FILES_PATH}/mctlass/libmctlassEx.so /opt/maca/lib/
@@ -82,6 +76,4 @@ jobs:
 
       - name: run test
         run: |
-          # timeout -s 9 600s python tests/ci_use/Metax_UT/run_ernie_vl_28B.py
-          timeout --preserve-status 600s python tests/ci_use/Metax_UT/run_ernie_vl_28B.py
-          cat log/workerlog.0
+          timeout -s 9 600s python tests/ci_use/Metax_UT/run_ernie_vl_28B.py
