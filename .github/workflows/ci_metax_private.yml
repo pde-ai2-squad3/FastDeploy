@@ -34,7 +34,7 @@ jobs:
           fi
 
           echo "***********************"
-          git log -n 3 --oneline
+          git log -n 20 --oneline
           echo "***********************"
 
           METAX_PADDLE_CUSTOM_DEVICE_WHL_SOURCE=oss://opensource-ci/paddle
@@ -82,3 +82,4 @@ jobs:
       - name: run test
         run: |
           timeout -s 9 600s python tests/ci_use/Metax_UT/run_ernie_vl_28B.py
+          cat log/workerlog.0
