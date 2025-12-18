@@ -91,11 +91,11 @@ jobs:
           fi
 
           METAX_PADDLE_CUSTOM_DEVICE_WHL_SOURCE=oss://opensource-ci/paddle
-          METAX_PADDLE_CUSTOM_DEVICE_WHL_NAME=paddle_metax_gpu-3.3.0.dev${DATE_NUMBER}+maca0.0.0-cp310-cp310-linux_x86_64.whl
-          # METAX_PADDLE_CUSTOM_DEVICE_WHL_NAME=paddle_metax_gpu-3.3.0.dev20251210+maca0.0.0-cp310-cp310-linux_x86_64.whl
+          # METAX_PADDLE_CUSTOM_DEVICE_WHL_NAME=paddle_metax_gpu-3.3.0.dev${DATE_NUMBER}+maca0.0.0-cp310-cp310-linux_x86_64.whl
+          METAX_PADDLE_CUSTOM_DEVICE_WHL_NAME=paddle_metax_gpu-3.3.0.dev20251213+maca0.0.0-cp310-cp310-linux_x86_64.whl
           PADDLE_PADDLE_WHL_SOURCE=https://paddle-whl.bj.bcebos.com/nightly/cpu/paddlepaddle
-          PADDLE_PADDLE_WHL_NAME=paddlepaddle-3.3.0.dev${PREV_DATE_NUMBER}-cp310-cp310-linux_x86_64.whl
-          # PADDLE_PADDLE_WHL_NAME=paddlepaddle-3.3.0.dev20251209-cp310-cp310-linux_x86_64.whl
+          # PADDLE_PADDLE_WHL_NAME=paddlepaddle-3.3.0.dev${PREV_DATE_NUMBER}-cp310-cp310-linux_x86_64.whl
+          PADDLE_PADDLE_WHL_NAME=paddlepaddle-3.3.0.dev20251212-cp310-cp310-linux_x86_64.whl
 
           echo -e "\n=========== Pull [ ${METAX_PADDLE_CUSTOM_DEVICE_WHL_NAME} ] from [ ${METAX_PADDLE_CUSTOM_DEVICE_WHL_SOURCE} ] ==========="
           ossutil cp ${METAX_PADDLE_CUSTOM_DEVICE_WHL_SOURCE}/${METAX_PADDLE_CUSTOM_DEVICE_WHL_NAME} .
