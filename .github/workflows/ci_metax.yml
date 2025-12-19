@@ -34,7 +34,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-          git clone https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git .
+          git clone -b ${BRANCH} https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git .
           # git reset --hard 21f138f68be16c815f60496c1bc5ea69b511f8cc
           # git revert --no-edit 2e1680838f5e99e4ea5c5bc4251365d9add0f62f
 
@@ -42,6 +42,23 @@ jobs:
           if [ "${{ github.event_name }}" == "pull_request" ]; then
             git fetch origin pull/${{ github.event.pull_request.number }}/head:pull/${{ github.event.pull_request.number }}/head
             # git rebase pull/${{ github.event.pull_request.number }}/head
+
+            COMMIT_RANGE="${BRANCH}..pull/${{ github.event.pull_request.number }}/head"
+            COMMIT_HASHES=$(git log --reverse --format="%H" ${COMMIT_RANGE})
+            if [ -z "$COMMIT_HASHES" ]; then
+                echo "⚠️ PR 无新提交"
+                exit 0
+            fi
+            
+            # 批量 cherry-pick
+            for commit in $COMMIT_HASHES; do
+                echo "处理提交：$commit"
+                if ! git cherry-pick --allow-empty -x "$commit"; then
+                    echo "❌ 冲突，终止操作"
+                    git cherry-pick --abort
+                    exit 1
+                fi
+            done
             git cherry-pick FETCH_HEAD
 
             echo -e "\n=========== Git log info ==========="
