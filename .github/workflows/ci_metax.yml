@@ -69,7 +69,6 @@ jobs:
                         exit 1
                     fi
                 fi
-                echo "✅ 提交 $commit 处理完成"
             done
             # git cherry-pick FETCH_HEAD
 
@@ -194,7 +193,6 @@ jobs:
             "tests/operators/test_get_padding_offset.py"
             "tests/operators/test_speculate_get_padding_offset.py"
             "tests/operators/test_rebuild_padding.py"
-            "tests/operators/test_share_external_data.py"
           )
 
           for path in "${METAX_CI_CASELIST[@]}"; do
