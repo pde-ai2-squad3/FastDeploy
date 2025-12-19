@@ -53,13 +53,18 @@ jobs:
             # 批量 cherry-pick
             for commit in $COMMIT_HASHES; do
                 echo "处理提交：$commit"
-                if ! git cherry-pick --allow-empty -x "$commit"; then
-                    echo "❌ 冲突，终止操作"
-                    git cherry-pick --abort
-                    exit 1
+                git cherry-pick --allow-empty -x "$commit"
+    
+                # 检查是否为空提交（工作区干净）
+                if [[ -z "$(git status --porcelain)" ]]; then
+                    # 可选：自动跳过空提交
+                    git cherry-pick --skip
+                    # 若需保留空提交，替换为：
+                    # git commit --allow-empty --amend -C HEAD
+                    # git cherry-pick --continue
                 fi
             done
-            git cherry-pick FETCH_HEAD
+            # git cherry-pick FETCH_HEAD
 
             echo -e "\n=========== Git log info ==========="
             git --no-pager log --pretty=oneline -5
