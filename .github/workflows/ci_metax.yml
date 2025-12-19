@@ -40,29 +40,36 @@ jobs:
 
           MODIFIED_FILES=""
           if [ "${{ github.event_name }}" == "pull_request" ]; then
-            git fetch origin pull/${{ github.event.pull_request.number }}/head:pull/${{ github.event.pull_request.number }}/head
+            git fetch origin pull/${{ github.event.pull_request.number }}/head:pull/${{ github.event.pull_request.number }}/head --force
             # git rebase pull/${{ github.event.pull_request.number }}/head
 
             COMMIT_RANGE="${BRANCH}..pull/${{ github.event.pull_request.number }}/head"
+            # 获取 PR 所有待 cherry-pick 的提交（按旧→新）
             COMMIT_HASHES=$(git log --reverse --format="%H" ${COMMIT_RANGE})
             if [ -z "$COMMIT_HASHES" ]; then
-                echo "⚠️ PR 无新提交"
+                echo "⚠️ PR #${PR_NUM} 无新提交需处理"
                 exit 0
             fi
             
-            # 批量 cherry-pick
+            # 批量 cherry-pick 核心逻辑（修复关键：仅在流程中时才处理 continue/skip）
             for commit in $COMMIT_HASHES; do
-                echo "处理提交：$commit"
+                echo "👉 开始处理提交：$commit"
+                # 执行 cherry-pick（允许空提交，保留来源）
                 git cherry-pick --allow-empty -x "$commit"
-    
-                # 检查是否为空提交（工作区干净）
-                if [[ -z "$(git status --porcelain)" ]]; then
-                    # 可选：自动跳过空提交
-                    git cherry-pick --skip
-                    # 若需保留空提交，替换为：
-                    # git commit --allow-empty --amend -C HEAD
-                    # git cherry-pick --continue
+                
+                # 检查是否有未完成的 cherry-pick 流程（仅此时才需要 continue/skip）
+                if git status | grep -q "cherry-pick in progress"; then
+                    # 检查是否为空提交（无文件变更）
+                    if [[ -z "$(git status --porcelain)" ]]; then
+                        echo "⚠️ 提交 $commit 为空，自动跳过"
+                        git cherry-pick --skip
+                    else
+                        echo "❌ 提交 $commit 冲突！请手动解决后执行："
+                        echo "   git add . && git cherry-pick --continue"
+                        exit 1
+                    fi
                 fi
+                echo "✅ 提交 $commit 处理完成"
             done
             # git cherry-pick FETCH_HEAD
 
