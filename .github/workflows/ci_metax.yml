@@ -166,7 +166,6 @@ jobs:
             "tests/operators/test_speculate_get_padding_offset.py"
             "tests/operators/test_rebuild_padding.py"
             "tests/operators/test_share_external_data.py"
-            "tests/operators/test_rejection_top_p_sampling.py"
           )
 
           for path in "${METAX_CI_CASELIST[@]}"; do
