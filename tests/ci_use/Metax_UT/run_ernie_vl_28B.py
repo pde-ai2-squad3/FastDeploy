@@ -15,7 +15,7 @@ sampling_params = fastdeploy.SamplingParams(top_p=0.95, max_tokens=2048, tempera
 
 llm = fastdeploy.LLM(
     model="/data/models/PaddlePaddle/ERNIE-4.5-VL-28B-A3B-Thinking",
-    tensor_parallel_size=1,
+    tensor_parallel_size=2,
     engine_worker_queue_port=8899,
     max_model_len=2048,
     quantization="wint8",
