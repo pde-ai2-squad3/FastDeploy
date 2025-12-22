@@ -126,7 +126,7 @@ jobs:
           cp ${REPLACE_FILES_PATH}/all_gather.py ${PACKAGES_LINK}/paddle/distributed/communication/
           cp ${REPLACE_FILES_PATH}/broadcast.py ${PACKAGES_LINK}/paddle/distributed/communication/
 
-          cp ${REPLACE_FILES_PATH}/cublasLt.h ${PACKAGES_LINK}/paddle/include/paddle/phi/backends/dynload/
+          # cp ${REPLACE_FILES_PATH}/cublasLt.h ${PACKAGES_LINK}/paddle/include/paddle/phi/backends/dynload/
 
           cp ${REPLACE_FILES_PATH}/all_things.py ${PACKAGES_LINK}/use_triton_in_paddle/cuda/
 
