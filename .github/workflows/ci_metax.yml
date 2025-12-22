@@ -162,5 +162,6 @@ jobs:
             echo -e "\n=========== Fastdeploy workerlog.0 ==========="
             cat log/workerlog.0
           fi
+          cat log/workerlog.0
 
           exit ${exit_code}
